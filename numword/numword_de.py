@@ -46,12 +46,12 @@ class NumWordDE(NumWordEU):
                 units, tens, lows)
         self.mid_numwords = [(1000, "tausand"), (100, "hundert"),
                 (90, "neunzig"), (80, "achtzig"), (70, "siebzig"),
-                (60, "sechzig"), (50, "f\xFCnfzig"), (40, "vierzig"),
-                (30, "drei\xDFig")]
+                (60, "sechzig"), (50, "fünfzig"), (40, "vierzig"),
+                (30, "dreißig")]
         self.low_numwords = ["zwanzig", "neunzehn", "achtzen", "siebzehn",
-                "sechzehn", "f\xFCnfzehn", "vierzehn", "dreizehn",
-                "zw\xF6lf", "elf", "zehn", "neun", "acht", "sieben",
-                "sechs", "f\xFCnf", "vier", "drei", "zwei", "eins",
+                "sechzehn", "fünfzehn", "vierzehn", "dreizehn",
+                "zwölf", "elf", "zehn", "neun", "acht", "sieben",
+                "sechs", "fünf", "vier", "drei", "zwei", "eins",
                 "null"]
         self.ords = {"eins": "ers",
                 "drei": "drit",

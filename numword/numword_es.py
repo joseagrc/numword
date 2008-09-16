@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #This file is part of numword.  The COPYRIGHT file at the top level of
 #this repository contains the full copyright notices and license terms.
 '''
@@ -27,7 +28,7 @@ class NumWordES(NumWordEU):
         max_val = 3 + 6*len(high)
 
         for word, i in zip(high, range(max_val, 3, -6)):
-            self.cards[10**(i - 3)] = word + "ill\xf2n"
+            self.cards[10**(i - 3)] = word + "illòn"
 
 
     def _setup(self):
@@ -46,8 +47,8 @@ class NumWordES(NumWordEU):
                              (80, "ochenta"), (70, "setenta"), (60, "sesenta"),
                              (50,"cincuenta"), (40,"cuarenta")]
         self.low_numwords = ["vientinueve", "vientiocho", "vientisiete",
-                             "vientis\xE8is", "vienticinco", "vienticuatro",
-                             "vientitr\xE8s", "vientid\xF2s", "vientiuno",
+                             "vientisèis", "vienticinco", "vienticuatro",
+                             "vientitrès", "vientidòs", "vientiuno",
                              "viente", "diecinueve", "dieciocho", "diecisiete",
                              "dieciseis", "quince", "catorce", "trece", "doce",
                              "once", "diez", "nueve", "ocho", "siete", "seis",
@@ -58,10 +59,10 @@ class NumWordES(NumWordEU):
                       4  : "cuart",
                       5  : "quint",
                       6  : "sext",
-                      7  : "s\xE8ptim",
+                      7  : "sèptim",
                       8  : "octav",
                       9  : "noven",
-                      10 : "d\xE8cim" }
+                      10 : "dècim" }
 
 
     def _merge(self, curr, next):
@@ -115,7 +116,7 @@ class NumWordES(NumWordEU):
         '''
         self._verify_ordinal(value)
         # Correct for fem?
-        return "%s\xB0" % value
+        return "%s°" % value
 
 
     def currency(self, val, longval=True, old=False):

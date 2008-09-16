@@ -29,7 +29,7 @@ class NumWordFR(NumWordEU):
         self.low_numwords = ["vingt", "dix-neuf", "dix-huit", "dix-sept",
                              "seize", "quinze", "quatorze", "treize", "douze",
                              "onze", "dix", "neuf", "huit", "sept", "six",
-                             "cinq", "quatre", "trois", "deux", "un", "z\xE8ro"]
+                             "cinq", "quatre", "trois", "deux", "un", "zéro"]
 
     def _merge(self, curr, next):
         '''
@@ -68,7 +68,7 @@ class NumWordFR(NumWordEU):
             word = word[:-1]
         if word[-1] == "f":
             word = word[:-1] + 'v'
-        return word + "i\xE8me"
+        return word + "ième"
 
 
     def ordinal_number(self, value):
