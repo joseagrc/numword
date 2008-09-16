@@ -232,7 +232,6 @@ class NumWordBase(object):
         '''
         return value
 
-    # Trivial version
     def _inflect(self, value, text):
         '''
         Inflect
@@ -242,9 +241,8 @@ class NumWordBase(object):
             return text[0]
         return "".join(text)
 
-    #TODO generalise? Any others like pounds/shillings/pence?
     def _split(self, val, hightxt="", lowtxt="", jointxt="",
-                    divisor=100, longval=True):
+                    precision=2, longval=True):
         '''
         Split
         '''
@@ -252,7 +250,8 @@ class NumWordBase(object):
         try:
             high, low = val
         except TypeError:
-            high, low = divmod(val, divisor)
+            high = int(val)
+            low = int(round((val - high) * (10**precision)))
         if high:
             hightxt = self._title(self._inflect(high, hightxt))
             out.append(self.cardinal(high))
