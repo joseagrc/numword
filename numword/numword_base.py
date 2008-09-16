@@ -185,18 +185,15 @@ class NumWordBase(object):
         except (ValueError, TypeError, AssertionError):
             raise TypeError(self.errmsg_nonnum % value)
 
-        pre = int(value)
+        pre = int(round(value))
         post = abs(value - pre)
 
         out = [self.cardinal(pre)]
         if self.precision:
             out.append(self._title(self.pointword))
 
-        for _ in range(self.precision):
-            post *= 10
-            curr = int(post)
-            out.append(str(self.cardinal(curr)))
-            post -= curr
+            decimal = int(round(post * (10**self.precision)))
+            out.append(str(self.cardinal(decimal)))
 
         return " ".join(out)
 
