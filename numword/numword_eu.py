@@ -32,12 +32,13 @@ class NumWordEU(NumWordBase):
                 "sexagint", "septuagint", "octogint", "nonagint"]
         self.high_numwords = ["cent"] + self._gen_high_numwords(units, tens, lows)
 
-    def currency(self, value, longval=True, jointxt=""):
+    def currency(self, value, longval=True, jointxt="", hightxt="Euro/s", \
+            lowtxt="Euro cent/s", space=True):
         '''
         Convert to currency
         '''
-        return self._split(value, hightxt="Euro/s", lowtxt="Euro cent/s",
-                                jointxt=jointxt, longval=longval)
+        return self._split(value, hightxt=hightxt, lowtxt=lowtxt,
+                                jointxt=jointxt, longval=longval, space=space)
 
     def _merge(self, curr, next):
         '''

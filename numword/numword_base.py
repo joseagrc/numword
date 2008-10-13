@@ -242,7 +242,7 @@ class NumWordBase(object):
         return "".join(text)
 
     def _split(self, val, hightxt="", lowtxt="", jointxt="",
-                    precision=2, longval=True):
+                    precision=2, longval=True, space=True):
         '''
         Split
         '''
@@ -250,8 +250,9 @@ class NumWordBase(object):
         try:
             high, low = val
         except TypeError:
-            high = int(val)
-            low = int(round((val - high) * (10**precision)))
+            high, low = divmod(val, (10**precision))
+            #high = int(val)
+            #low = int(round((val - high) * (10**precision)))
         if high:
             hightxt = self._title(self._inflect(high, hightxt))
             out.append(self.cardinal(high))
@@ -267,7 +268,10 @@ class NumWordBase(object):
             out.append(self.cardinal(low))
             if lowtxt and longval:
                 out.append(self._title(self._inflect(low, lowtxt)))
-        return " ".join(out)
+        if space:
+            return " ".join(out)
+        else:
+            return "".join(out)
 
     def year(self, value, **kwargs):
         '''
