@@ -28,42 +28,43 @@ class NumWordES(NumWordEU):
         max_val = 3 + 6*len(high)
 
         for word, i in zip(high, range(max_val, 3, -6)):
-            self.cards[10**(i - 3)] = word + "illòn"
+            self.cards[10**(i - 3)] = word + u"illòn"
 
 
     def _setup(self):
         '''
         Setup
         '''
-        lows = ["cuatr", "tr", "b", "m"]
+        lows = [u"cuatr", u"tr", u"b", u"m"]
         self.high_numwords = self._gen_high_numwords([], [], lows)
-        self.negword = "menos "
-        self.pointword = "punto"
-        self.errmsg_nonnum = "Only numbers may be converted to words."
-        self.errmsg_toobig = "Number is too large to convert to words."
-        self.gender_stem = "o"
-        self.exclude_title = ["y", "menos", "punto"]
-        self.mid_numwords = [(1000, "mil"), (100, "cien"), (90, "noventa"),
-                             (80, "ochenta"), (70, "setenta"), (60, "sesenta"),
-                             (50,"cincuenta"), (40,"cuarenta")]
-        self.low_numwords = ["vientinueve", "vientiocho", "vientisiete",
-                             "vientisèis", "vienticinco", "vienticuatro",
-                             "vientitrès", "vientidòs", "vientiuno",
-                             "viente", "diecinueve", "dieciocho", "diecisiete",
-                             "dieciseis", "quince", "catorce", "trece", "doce",
-                             "once", "diez", "nueve", "ocho", "siete", "seis",
-                             "cinco", "cuatro", "tres", "dos", "uno", "cero"]
-        self.ords = { 1  : "primer",
-                      2  : "segund",
-                      3  : "tercer",
-                      4  : "cuart",
-                      5  : "quint",
-                      6  : "sext",
-                      7  : "sèptim",
-                      8  : "octav",
-                      9  : "noven",
-                      10 : "dècim" }
-
+        self.negword = u"menos "
+        self.pointword = u"punto"
+        self.errmsg_nonnum = u"Only numbers may be converted to words."
+        self.errmsg_toobig = u"Number is too large to convert to words."
+        self.gender_stem = u"o"
+        self.exclude_title = [u"y", u"menos", u"punto"]
+        self.mid_numwords = [(1000, u"mil"), (100, u"cien"), (90, u"noventa"),
+                (80, u"ochenta"), (70, u"setenta"), (60, u"sesenta"),
+                (50, u"cincuenta"), (40, u"cuarenta")]
+        self.low_numwords = [u"vientinueve", u"vientiocho", u"vientisiete",
+                u"vientisèis", u"vienticinco", u"vienticuatro", u"vientitrès",
+                u"vientidòs", u"vientiuno", u"viente", u"diecinueve",
+                u"dieciocho", u"diecisiete", u"dieciseis", u"quince",
+                u"catorce", u"trece", u"doce", u"once", u"diez", u"nueve",
+                u"ocho", u"siete", u"seis", u"cinco", u"cuatro", u"tres",
+                u"dos", u"uno", u"cero"]
+        self.ords = {
+                1: u"primer",
+                2: u"segund",
+                3: u"tercer",
+                4: u"cuart",
+                5: u"quint",
+                6: u"sext",
+                7: u"sèptim",
+                8: u"octav",
+                9: u"noven",
+                10 : u"dècim",
+                }
 
     def _merge(self, curr, next):
         '''
@@ -74,28 +75,28 @@ class NumWordES(NumWordEU):
         if cnum == 1:
             if nnum < 1000000:
                 return next
-            ctext = "un"
+            ctext = u"un"
         elif cnum == 100:
-            ctext += "t" + self.gender_stem
+            ctext += u"t" + self.gender_stem
 
         if nnum < cnum:
             if cnum < 100:
-                return ("%s y %s"%(ctext, ntext), cnum + nnum)
-            return ("%s %s"%(ctext, ntext), cnum + nnum)
+                return (u"%s y %s"%(ctext, ntext), cnum + nnum)
+            return (u"%s %s"%(ctext, ntext), cnum + nnum)
         elif (not nnum % 1000000) and cnum > 1:
-            ntext = ntext[:-3] + "ones"
+            ntext = ntext[:-3] + u"ones"
 
         if nnum == 100:
             if cnum == 5:
-                ctext = "quinien"
-                ntext = ""
+                ctext = u"quinien"
+                ntext = u""
             elif cnum == 7:
-                ctext = "sete"
+                ctext = u"sete"
             elif cnum == 9:
-                ctext = "nove"
-            ntext += "t" + self.gender_stem + "s"
+                ctext = u"nove"
+            ntext += u"t" + self.gender_stem + u"s"
         else:
-            ntext = " " + ntext
+            ntext = u" " + ntext
 
         return (ctext + ntext, cnum * nnum)
 
@@ -116,7 +117,7 @@ class NumWordES(NumWordEU):
         '''
         self._verify_ordinal(value)
         # Correct for fem?
-        return "%s°" % value
+        return u"%s°" % value
 
 
     def currency(self, val, longval=True, old=False):
@@ -124,9 +125,9 @@ class NumWordES(NumWordEU):
         Convert to currency
         '''
         if old:
-            return self._split(val, hightxt="peso/s", lowtxt="peseta/s",
-                    divisor=1000, jointxt="y", longval=longval)
-        return super(NumWordES, self).currency(val, jointxt="y",
+            return self._split(val, hightxt=u"peso/s", lowtxt=u"peseta/s",
+                    divisor=1000, jointxt=u"y", longval=longval)
+        return super(NumWordES, self).currency(val, jointxt=u"y",
                     longval=longval)
 
 _NW = NumWordES()
