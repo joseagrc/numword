@@ -28,7 +28,7 @@ class NumWordES(NumWordEU):
         max_val = 3 + 6*len(high)
 
         for word, i in zip(high, range(max_val, 3, -6)):
-            self.cards[10**(i - 3)] = word + u"illòn"
+            self.cards[10**(i - 3)] = word + u"illón"
 
 
     def _setup(self):
@@ -45,10 +45,10 @@ class NumWordES(NumWordEU):
         self.exclude_title = [u"y", u"menos", u"punto"]
         self.mid_numwords = [(1000, u"mil"), (100, u"cien"), (90, u"noventa"),
                 (80, u"ochenta"), (70, u"setenta"), (60, u"sesenta"),
-                (50, u"cincuenta"), (40, u"cuarenta")]
+                (50, u"cincuenta"), (40, u"cuarenta"), (30, u"treinta")]
         self.low_numwords = [u"vientinueve", u"vientiocho", u"vientisiete",
-                u"vientisèis", u"vienticinco", u"vienticuatro", u"vientitrès",
-                u"vientidòs", u"vientiuno", u"viente", u"diecinueve",
+                u"vientiséis", u"vienticinco", u"vienticuatro", u"vientitrés",
+                u"vientidós", u"vientiuno", u"viente", u"diecinueve",
                 u"dieciocho", u"diecisiete", u"dieciseis", u"quince",
                 u"catorce", u"trece", u"doce", u"once", u"diez", u"nueve",
                 u"ocho", u"siete", u"seis", u"cinco", u"cuatro", u"tres",
@@ -60,10 +60,10 @@ class NumWordES(NumWordEU):
                 4: u"cuart",
                 5: u"quint",
                 6: u"sext",
-                7: u"sèptim",
+                7: u"séptim",
                 8: u"octav",
                 9: u"noven",
-                10 : u"dècim",
+                10 : u"décim",
                 }
 
     def _merge(self, curr, next):
