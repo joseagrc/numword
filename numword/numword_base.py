@@ -4,6 +4,8 @@
 numword base
 '''
 
+import math
+
 from orderedmapping import OrderedMapping
 
 
@@ -185,7 +187,7 @@ class NumWordBase(object):
         except (ValueError, TypeError, AssertionError):
             raise TypeError(self.errmsg_nonnum % value)
 
-        pre = int(round(value))
+        pre = int(math.floor(value))
         post = abs(value - pre)
 
         out = [self.cardinal(pre)]
