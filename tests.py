@@ -17,6 +17,21 @@ class TestNumWordFR(TestCase):
         self.assertEqual(cardinal(3121.45),
                          u"trois-mille-cent-vingt-et-un virgule quarante-cinq")
 
+    def test_cardinal_not_a_number(self):
+        from numword.numword_fr import cardinal
+        error = u"type\(Ximinez\) not in \[long, int, float\]"
+        with self.assertRaisesRegexp(TypeError, error):
+            cardinal('Ximinez')
+
+    def test_cardinal_number_too_big(self):
+        from numword.numword_fr import cardinal
+        from numword.numword_fr import NumWordFR
+        max_val = NumWordFR().maxval
+        number = max_val + 1
+        error = u"abs\(%s\) must be less than %s" % (number, max_val)
+        with self.assertRaisesRegexp(OverflowError, error):
+            cardinal(number)
+
 
 class TestNumWordFR_BE(TestCase):
 
@@ -39,3 +54,18 @@ class TestNumWordEN(TestCase):
                          "one hundred and twenty-one point one")
         self.assertEqual(cardinal(3121.45),
                          u"three thousand, one hundred and twenty-one point forty-five")
+
+    def test_cardinal_not_a_number(self):
+        from numword.numword_fr import cardinal
+        error = u"type\(Ximinez\) not in \[long, int, float\]"
+        with self.assertRaisesRegexp(TypeError, error):
+            cardinal('Ximinez')
+
+    def test_cardinal_number_too_big(self):
+        from numword.numword_fr import cardinal
+        from numword.numword_fr import NumWordFR
+        max_val = NumWordFR().maxval
+        number = max_val + 1
+        error = u"abs\(%s\) must be less than %s" % (number, max_val)
+        with self.assertRaisesRegexp(OverflowError, error):
+            cardinal(number)

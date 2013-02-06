@@ -19,8 +19,6 @@ class NumWordFR(NumWordEU):
         '''
         self.negword = u"moins "
         self.pointword = u"virgule"
-        self.errmsg_nonnum = u"Only numbers may be converted to words."
-        self.errmsg_toobig = u"Number is too large to convert to words."
         self.exclude_title = [u"et", u"virgule", u"moins"]
         self.mid_numwords = [(1000, u"mille"), (100, u"cent"),
                              (80, u"quatre-vingts"), (60, u"soixante"),

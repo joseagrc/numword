@@ -26,7 +26,6 @@ class NumWordEN(NumWordEU):
         '''
         self.negword = u"minus "
         self.pointword = u"point"
-        self.errmsg_nonnum = "Only numbers may be converted to words."
         self.exclude_title = [u"and", u"point", u"minus"]
 
         self.mid_numwords = [(1000, u"thousand"), (100, u"hundred"),

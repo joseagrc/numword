@@ -39,8 +39,6 @@ class NumWordES(NumWordEU):
         self.high_numwords = self._gen_high_numwords([], [], lows)
         self.negword = u"menos "
         self.pointword = u"punto"
-        self.errmsg_nonnum = u"Only numbers may be converted to words."
-        self.errmsg_toobig = u"Number is too large to convert to words."
         self.gender_stem = u"o"
         self.exclude_title = [u"y", u"menos", u"punto"]
         self.mid_numwords = [(1000, u"mil"), (100, u"cien"), (90, u"noventa"),

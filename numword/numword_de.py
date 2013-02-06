@@ -27,8 +27,6 @@ class NumWordDE(NumWordEU):
         '''
         self.negword = u"minus "
         self.pointword = u"Komma"
-        self.errmsg_nonnum = u"Nur Zahlen koennen in Worte konvertiert werden."
-        self.errmsg_toobig = u"Zahl ist zu gross um in Worte konvertiert zu werden."
         self.exclude_title = []
         lows = [u"Non", u"Okt", u"Sept", u"Sext", u"Quint", u"Quadr", u"Tr",
                 u"B", u"M"]
