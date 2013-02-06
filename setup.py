@@ -13,6 +13,7 @@ setup(name='numword',
         description="Python modules to convert numbers to words. Easily extensible.",
         download_url="http://code.google.com/p/numword/downloads/",
         packages=['numword'],
+        test_suite='tests',
         classifiers=[
             'Development Status :: 5 - Production/Stable',
             'Intended Audience :: Developers',
