@@ -4,7 +4,7 @@
 numword for EN_GB
 '''
 
-from numword_en import NumWordEN
+from .numword_en import NumWordEN
 
 
 class NumWordENGB(NumWordEN):

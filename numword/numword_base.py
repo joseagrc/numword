@@ -5,8 +5,7 @@ numword base
 '''
 
 import math
-
-from orderedmapping import OrderedMapping
+from collections import OrderedDict
 
 
 class NumWordBase(object):
@@ -15,7 +14,7 @@ class NumWordBase(object):
     '''
 
     def __init__(self):
-        self.cards = OrderedMapping()
+        self.cards = OrderedDict()
         self.is_title = False
         self.precision = 2
         self.exclude_title = []
@@ -35,7 +34,7 @@ class NumWordBase(object):
         self._setup()
         self._set_numwords()
 
-        self.maxval = 1000 * self.cards.order[0]
+        self.maxval = 1000 * self.cards.iterkeys().next()
 
     def _base_setup(self):
         '''

@@ -4,7 +4,7 @@
 '''
 numword for DE
 '''
-from numword_eu import NumWordEU
+from .numword_eu import NumWordEU
 
 #//TODO: Use German error messages
 class NumWordDE(NumWordEU):
@@ -104,7 +104,7 @@ class NumWordDE(NumWordEU):
                 if nnum == 1:
                     ntext = u"eins"
                 ntext, ctext =  ntext, ctext
-            if cnum >= 10**6 and nnum <> 0:
+            if cnum >= 10**6 and nnum != 0:
                 ctext += " "
             val = cnum + nnum
 

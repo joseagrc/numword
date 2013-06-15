@@ -4,7 +4,7 @@
 numword for EU
 '''
 
-from numword_base import NumWordBase
+from .numword_base import NumWordBase
 
 class NumWordEU(NumWordBase):
     '''

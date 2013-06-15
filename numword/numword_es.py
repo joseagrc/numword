@@ -5,7 +5,7 @@
 numword for ES
 '''
 
-from numword_eu import NumWordEU
+from .numword_eu import NumWordEU
 
 #TODO correct orthographics
 #TODO error messages

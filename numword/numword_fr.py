@@ -5,7 +5,7 @@
 numword for FR
 '''
 
-from numword_eu import NumWordEU
+from .numword_eu import NumWordEU
 
 
 class NumWordFR(NumWordEU):
