@@ -25,11 +25,10 @@ class NumWordES(NumWordEU):
         '''
         Set high numwords
         '''
-        max_val = 3 + 6*len(high)
+        max_val = 3 + 6 * len(high)
 
         for word, i in zip(high, range(max_val, 3, -6)):
-            self.cards[10**(i - 3)] = word + u"illón"
-
+            self.cards[10 ** (i - 3)] = word + u"illón"
 
     def _setup(self):
         '''
@@ -41,28 +40,61 @@ class NumWordES(NumWordEU):
         self.pointword = u"punto"
         self.gender_stem = u"o"
         self.exclude_title = [u"y", u"menos", u"punto"]
-        self.mid_numwords = [(1000, u"mil"), (100, u"cien"), (90, u"noventa"),
-                (80, u"ochenta"), (70, u"setenta"), (60, u"sesenta"),
-                (50, u"cincuenta"), (40, u"cuarenta"), (30, u"treinta")]
-        self.low_numwords = [u"vientinueve", u"vientiocho", u"vientisiete",
-                u"vientiséis", u"vienticinco", u"vienticuatro", u"vientitrés",
-                u"vientidós", u"vientiuno", u"viente", u"diecinueve",
-                u"dieciocho", u"diecisiete", u"dieciseis", u"quince",
-                u"catorce", u"trece", u"doce", u"once", u"diez", u"nueve",
-                u"ocho", u"siete", u"seis", u"cinco", u"cuatro", u"tres",
-                u"dos", u"uno", u"cero"]
+        self.mid_numwords = [
+            (1000, u"mil"),
+            (100, u"cien"),
+            (90, u"noventa"),
+            (80, u"ochenta"),
+            (70, u"setenta"),
+            (60, u"sesenta"),
+            (50, u"cincuenta"),
+            (40, u"cuarenta"),
+            (30, u"treinta"),
+            ]
+        self.low_numwords = [
+            u"vientinueve",
+            u"vientiocho",
+            u"vientisiete",
+            u"vientiséis",
+            u"vienticinco",
+            u"vienticuatro",
+            u"vientitrés",
+            u"vientidós",
+            u"vientiuno",
+            u"viente",
+            u"diecinueve",
+            u"dieciocho",
+            u"diecisiete",
+            u"dieciseis",
+            u"quince",
+            u"catorce",
+            u"trece",
+            u"doce",
+            u"once",
+            u"diez",
+            u"nueve",
+            u"ocho",
+            u"siete",
+            u"seis",
+            u"cinco",
+            u"cuatro",
+            u"tres",
+            u"dos",
+            u"uno",
+            u"cero",
+            ]
         self.ords = {
-                1: u"primer",
-                2: u"segund",
-                3: u"tercer",
-                4: u"cuart",
-                5: u"quint",
-                6: u"sext",
-                7: u"séptim",
-                8: u"octav",
-                9: u"noven",
-                10 : u"décim",
-                }
+            1: u"primer",
+            2: u"segund",
+            3: u"tercer",
+            4: u"cuart",
+            5: u"quint",
+            6: u"sext",
+            7: u"séptim",
+            8: u"octav",
+            9: u"noven",
+            10: u"décim",
+            }
 
     def _merge(self, curr, next):
         '''
@@ -79,8 +111,8 @@ class NumWordES(NumWordEU):
 
         if nnum < cnum:
             if cnum < 100:
-                return (u"%s y %s"%(ctext, ntext), cnum + nnum)
-            return (u"%s %s"%(ctext, ntext), cnum + nnum)
+                return (u"%s y %s" % (ctext, ntext), cnum + nnum)
+            return (u"%s %s" % (ctext, ntext), cnum + nnum)
         elif (not nnum % 1000000) and cnum > 1:
             ntext = ntext[:-3] + u"ones"
 
@@ -97,7 +129,6 @@ class NumWordES(NumWordEU):
             ntext = u" " + ntext
 
         return (ctext + ntext, cnum * nnum)
-
 
     def ordinal(self, value):
         '''
@@ -117,18 +148,18 @@ class NumWordES(NumWordEU):
         # Correct for fem?
         return u"%s°" % value
 
-
     def currency(self, val, longval=True, old=False):
         '''
         Convert to currency
         '''
         if old:
             return self._split(val, hightxt=u"peso/s", lowtxt=u"peseta/s",
-                    divisor=1000, jointxt=u"y", longval=longval)
+                divisor=1000, jointxt=u"y", longval=longval)
         return super(NumWordES, self).currency(val, jointxt=u"y",
-                    longval=longval)
+            longval=longval)
 
 _NW = NumWordES()
+
 
 def cardinal(value):
     '''
@@ -136,11 +167,13 @@ def cardinal(value):
     '''
     return _NW.cardinal(value)
 
+
 def ordinal(value):
     '''
     Convert to ordinal
     '''
     return _NW.ordinal(value)
+
 
 def ordinal_number(value):
     '''
@@ -148,28 +181,16 @@ def ordinal_number(value):
     '''
     return _NW.ordinal_number(value)
 
+
 def currency(value, longval=True, old=False):
     '''
     Convert to currency
     '''
     return _NW.currency(value, longval=longval, old=old)
 
+
 def year(value, longval=True):
     '''
     Convert to year
     '''
     return _NW.year(value, longval=longval)
-
-def main():
-    '''
-    Main
-    '''
-    for val in [ 1, 11, 12, 21, 31, 33, 71, 80, 81, 91, 99, 100, 101, 102, 120, 155,
-             180, 300, 308, 832, 1000, 1001, 1061, 1100, 1120, 1500, 1701, 1800,
-             2000, 2010, 2099, 2171, 3000, 8280, 8291, 150000, 500000, 1000000,
-             2000000, 2000001, -21212121211221211111, -2.121212, -1.0000100,
-             1325325436067876801768700107601001012212132143210473207540327057320957032975032975093275093275093270957329057320975093272950730]:
-        _NW.test(val)
-
-if __name__ == "__main__":
-    main()

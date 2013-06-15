@@ -18,7 +18,7 @@ class NumWordEN(NumWordEU):
         '''
         max_val = 3 + 3 * len(high)
         for word, i in zip(high, range(max_val, 3, -3)):
-            self.cards[10**i] = word + u"illion"
+            self.cards[10 ** i] = word + u"illion"
 
     def _setup(self):
         '''
@@ -28,23 +28,49 @@ class NumWordEN(NumWordEU):
         self.pointword = u"point"
         self.exclude_title = [u"and", u"point", u"minus"]
 
-        self.mid_numwords = [(1000, u"thousand"), (100, u"hundred"),
-                (90, u"ninety"), (80, u"eighty"), (70, u"seventy"),
-                (60, u"sixty"), (50, u"fifty"), (40, u"forty"), (30, u"thirty")]
-        self.low_numwords = [u"twenty", u"nineteen", u"eighteen", u"seventeen",
-                u"sixteen", u"fifteen", u"fourteen", u"thirteen", u"twelve",
-                u"eleven", u"ten", u"nine", u"eight", u"seven", u"six", u"five",
-                u"four", u"three", u"two", u"one", u"zero"]
+        self.mid_numwords = [
+            (1000, u"thousand"),
+            (100, u"hundred"),
+            (90, u"ninety"),
+            (80, u"eighty"),
+            (70, u"seventy"),
+            (60, u"sixty"),
+            (50, u"fifty"),
+            (40, u"forty"),
+            (30, u"thirty"),
+            ]
+        self.low_numwords = [
+            u"twenty",
+            u"nineteen",
+            u"eighteen",
+            u"seventeen",
+            u"sixteen",
+            u"fifteen",
+            u"fourteen",
+            u"thirteen",
+            u"twelve",
+            u"eleven",
+            u"ten",
+            u"nine",
+            u"eight",
+            u"seven",
+            u"six",
+            u"five",
+            u"four",
+            u"three",
+            u"two",
+            u"one",
+            u"zero",
+            ]
         self.ords = {
-                u"one": u"first",
-                u"two": u"second",
-                u"three": u"third",
-                u"five": u"fifth",
-                u"eight": u"eighth",
-                u"nine": u"ninth",
-                u"twelve": u"twelfth",
-                }
-
+            u"one": u"first",
+            u"two": u"second",
+            u"three": u"third",
+            u"five": u"fifth",
+            u"eight": u"eighth",
+            u"nine": u"ninth",
+            u"twelve": u"twelfth",
+            }
 
     def _merge(self, curr, next):
         '''
@@ -54,14 +80,13 @@ class NumWordEN(NumWordEU):
 
         if cnum == 1 and nnum < 100:
             return next
-        elif 100 > cnum > nnum :
+        elif 100 > cnum > nnum:
             return (u"%s-%s" % (ctext, ntext), cnum + nnum)
         elif cnum >= 100 > nnum:
             return (u"%s and %s" % (ctext, ntext), cnum + nnum)
         elif nnum > cnum:
             return (u"%s %s" % (ctext, ntext), cnum * nnum)
         return (u"%s, %s" % (ctext, ntext), cnum + nnum)
-
 
     def ordinal(self, value):
         '''
@@ -81,7 +106,6 @@ class NumWordEN(NumWordEU):
         outwords[-1] = u"-".join(lastwords)
         return " ".join(outwords)
 
-
     def ordinal_number(self, value):
         '''
         Convert to ordinal num
@@ -89,25 +113,25 @@ class NumWordEN(NumWordEU):
         self._verify_ordinal(value)
         return u"%s%s" % (value, self.ordinal(value)[-2:])
 
-
     def year(self, val, longval=True):
         '''
         Convert to year
         '''
-        if not (val//100)%10:
+        if not (val // 100) % 10:
             return self.cardinal(val)
         return self._split(val, hightxt=u"hundred", jointxt=u"and",
-                                longval=longval)
+            longval=longval)
 
     def currency(self, val, longval=True):
         '''
         Convert to currency
         '''
         return self._split(val, hightxt=u"dollar/s", lowtxt=u"cent/s",
-                                jointxt=u"and", longval=longval)
+            jointxt=u"and", longval=longval)
 
 
 _NW = NumWordEN()
+
 
 def cardinal(value):
     '''
@@ -115,11 +139,13 @@ def cardinal(value):
     '''
     return _NW.cardinal(value)
 
+
 def ordinal(value):
     '''
     Convert to ordinal
     '''
     return _NW.ordinal(value)
+
 
 def ordinal_number(value):
     '''
@@ -127,28 +153,16 @@ def ordinal_number(value):
     '''
     return _NW.ordinal_number(value)
 
+
 def currency(value, longval=True):
     '''
     Convert to currency
     '''
     return _NW.currency(value, longval=longval)
 
+
 def year(value, longval=True):
     '''
     Convert to year
     '''
     return _NW.year(value, longval=longval)
-
-def main():
-    '''
-    Main
-    '''
-    for val in [ 1, 11, 12, 21, 31, 33, 71, 80, 81, 91, 99, 100, 101, 102, 120, 155,
-             180, 300, 308, 832, 1000, 1001, 1061, 1100, 1120, 1500, 1701, 1800,
-             2000, 2010, 2099, 2171, 3000, 8280, 8291, 150000, 500000, 1000000,
-             2000000, 2000001, -21212121211221211111, -2.121212, -1.0000100,
-             1325325436067876801768700107601001012212132143210473207540327057320957032975032975093275093275093270957329057320975093272950730]:
-        _NW.test(val)
-
-if __name__ == "__main__":
-    main()

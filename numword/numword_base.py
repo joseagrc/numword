@@ -161,9 +161,9 @@ class NumWordBase(object):
         Verify ordinal
         '''
         if not value == long(value):
-            raise TypeError, self.errmsg_floatord % (value)
+            raise TypeError(self.errmsg_floatord % (value))
         if not abs(value) == value:
-            raise TypeError, self.errmsg_negord % (value)
+            raise TypeError(self.errmsg_negord % (value))
 
     def _verify_num(self, value):
         '''
@@ -193,7 +193,7 @@ class NumWordBase(object):
         if self.precision:
             out.append(self._title(self.pointword))
 
-            decimal = int(round(post * (10**self.precision)))
+            decimal = int(round(post * (10 ** self.precision)))
             out.append(str(self.cardinal(decimal)))
 
         return " ".join(out)
@@ -242,8 +242,8 @@ class NumWordBase(object):
             return text[0]
         return "".join(text)
 
-    def _split(self, val, hightxt="", lowtxt="", jointxt="",
-                    precision=2, longval=True, space=True):
+    def _split(self, val, hightxt="", lowtxt="", jointxt="", precision=2,
+            longval=True, space=True):
         '''
         Split
         '''
@@ -251,7 +251,7 @@ class NumWordBase(object):
         try:
             high, low = val
         except TypeError:
-            high, low = divmod(val, (10**precision))
+            high, low = divmod(val, (10 ** precision))
             #high = int(val)
             #low = int(round((val - high) * (10**precision)))
         if high:
@@ -285,34 +285,3 @@ class NumWordBase(object):
         Convert to currency
         '''
         return self.cardinal(value)
-
-    def test(self, value):
-        '''
-        Test
-        '''
-        try:
-            _card = self.cardinal(value)
-        except:
-            _card = u"invalid"
-        try:
-            _ord = self.ordinal(value)
-        except:
-            _ord = u"invalid"
-        try:
-            _ordnum = self.ordinal_number(value)
-        except:
-            _ordnum = u"invalid"
-        try:
-            _curr = self.currency(value)
-        except:
-            _curr = u"invalid"
-        try:
-            _year = self.year(value)
-        except:
-            _year = u"invalid"
-        print (u"For %s, cardinal is %s;\n" \
-                "\tordinal is %s;\n" \
-                "\tordinal number is %s;\n" \
-                "\tcurrency is %s;\n" \
-                "\tyear is %s." %
-                    (value, _card, _ord, _ordnum, _curr, _year))
