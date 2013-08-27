@@ -226,5 +226,33 @@ class TestNumWordDE(TestCase):
         for number, word in tests:
             self.assertEqual(ordinal(number), word)
 
+
+class TestNumWordES(TestCase):
+
+    def test_cardinal(self):
+        from numword.numword_es import cardinal
+        self.assertEqual(cardinal(0), u"cero")
+        self.assertEqual(cardinal(11.96), u"once punto noventa y seis")
+        self.assertEqual(cardinal(100), u"cien")
+        self.assertEqual(cardinal(100.0), u"cien")
+        self.assertEqual(cardinal(121.01), u"ciento veintiuno punto uno")
+        self.assertEqual(cardinal(3121.45),
+            u"tres mil ciento veintiuno punto cuarenta y cinco")
+
+    def test_cardinal_not_a_number(self):
+        from numword.numword_es import cardinal
+        error = u"type\(Ximinez\) not in \[long, int, float\]"
+        with self.assertRaisesRegexp(TypeError, error):
+            cardinal('Ximinez')
+
+    def test_cardinal_number_too_big(self):
+        from numword.numword_es import cardinal
+        from numword.numword_es import NumWordES
+        max_val = NumWordES().maxval
+        number = max_val + 1
+        error = u"abs\(%s\) must be less than %s" % (number, max_val)
+        with self.assertRaisesRegexp(OverflowError, error):
+            cardinal(number)
+
 if __name__ == '__main__':
     main()

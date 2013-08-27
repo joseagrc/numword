@@ -17,8 +17,8 @@ class NumWordES(NumWordEU):
     '''
 
     def __init__(self):
+        self.gender_stem = None
         super(NumWordES, self).__init__()
-        self.gender_stem = ''
 
     #TODO Is this sufficient??
     def _set_high_numwords(self, high):
@@ -52,16 +52,16 @@ class NumWordES(NumWordEU):
             (30, u"treinta"),
             ]
         self.low_numwords = [
-            u"vientinueve",
-            u"vientiocho",
-            u"vientisiete",
-            u"vientiséis",
-            u"vienticinco",
-            u"vienticuatro",
-            u"vientitrés",
-            u"vientidós",
-            u"vientiuno",
-            u"viente",
+            u"veintinueve",
+            u"veintiocho",
+            u"veintisiete",
+            u"veintiséis",
+            u"veinticinco",
+            u"veinticuatro",
+            u"veintitrés",
+            u"veintidós",
+            u"veintiuno",
+            u"veinte",
             u"diecinueve",
             u"dieciocho",
             u"diecisiete",
